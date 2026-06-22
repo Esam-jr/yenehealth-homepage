@@ -4,6 +4,7 @@ import { Heart, Eye, ShoppingCart } from 'lucide-react'
 interface Product {
   id: number
   name: string
+  image: string
   category: string
   price: number
   originalPrice: number
@@ -14,6 +15,7 @@ const products: Product[] = [
   {
     id: 1,
     name: 'Natures Bounty Hair, Skin and Nails Biotin Gummie',
+    image: 'naturesBounty.png',
     category: 'VITAMINS AND SUPPLEMENTS',
     price: 3000,
     originalPrice: 3500,
@@ -22,6 +24,7 @@ const products: Product[] = [
   {
     id: 2,
     name: 'Gaullac 1 Infant Formula',
+    image: 'gaullac1.png',
     category: 'MOMMY & BABY',
     price: 1000,
     originalPrice: 1200,
@@ -30,6 +33,7 @@ const products: Product[] = [
   {
     id: 3,
     name: 'Gaullac 2 Follow-On Formula',
+    image: 'gaullac2.png',
     category: 'MOMMY & BABY',
     price: 1000,
     originalPrice: 1200,
@@ -38,6 +42,7 @@ const products: Product[] = [
   {
     id: 4,
     name: 'Equate Cold & Flu Nighttime Softgels',
+    image: 'equate.png',
     category: 'OVER THE COUNTER',
     price: 2880,
     originalPrice: 3200,
@@ -46,6 +51,7 @@ const products: Product[] = [
   {
     id: 5,
     name: 'Equate Cold & Flu Nighttime Softgels',
+    image: 'equate2.png',
     category: 'OVER THE COUNTER',
     price: 2880,
     originalPrice: 3200,
@@ -152,7 +158,7 @@ export default function MainSection() {
 
         {/* Right - Featured Products */}
         <div className="lg:col-span-3 bg-white rounded-3xl p-6 shadow-sm">
-          <h2 className="mb-6 text-xl font-bold text-gray-900">Featured Products</h2>
+          <h2 className="mb-6 text-base font-bold text-gray-900">Featured Products</h2>
 
           <div className="overflow-x-auto pb-4">
             <div className="flex gap-4 min-w-min">
@@ -163,25 +169,32 @@ export default function MainSection() {
                 >
                   <div className="relative aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
                     {product.discount > 0 && (
-                      <div className="absolute left-3 top-3 z-10 rounded-full bg-coral px-3 py-1 text-xs font-bold text-white">
+                      <div className="absolute left-3 top-3 z-10 rounded-md bg-coral px-3 py-1 text-xs  text-white">
                         {product.discount}% OFF
-                      </div>
+                      </div> 
                     )}
 
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-all group-hover:bg-opacity-20">
-                      <button onClick={handleClick} className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs font-semibold opacity-0 transition-opacity group-hover:opacity-100">
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <button
+                        onClick={handleClick}
+                        className="z-20 transform translate-y-25 opacity-0 transition-all duration-500 ease-out flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-semibold group-hover:translate-y-8 group-hover:opacity-100 hover:bg-coral hover:text-white"
+                      >
                         <Eye size={14} />
                         <span>Quick View</span>
                       </button>
                     </div>
 
-                    <svg className="h-16 w-16 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                    </svg>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full object-cover transform transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
                   </div>
 
                   <div className="p-4">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wide text-teal">{product.category.slice(0, 20)}</p>
+                    <p className="mb-2 text-xs  uppercase tracking-wide text-gray-400 hover:text-coral hover:cursor-pointer transition">
+                      {product.category.slice(0, 20)}
+                    </p>
                     <h3 className="mb-3 h-9 text-sm font-bold text-gray-900 line-clamp-2">
                       {product.name}
                     </h3>
@@ -194,11 +207,15 @@ export default function MainSection() {
                       )}
                     </div>
 
-                    <div className="flex gap-2">
-                      <button onClick={handleClick} className="flex-1 rounded-full border-2 border-coral py-2 text-sm font-semibold text-coral transition hover:bg-coral hover:text-white">
-                        <Heart size={14} className="mx-auto" />
+                    <div className="flex justify-between gap-4">
+                      <div
+                      className="flex rounded-md border border-gray-300  transition hover:border-coral  items-center justify-center gap-1"
+                      >
+                      <button onClick={handleClick} className=" text-gray-400 rounded-md  px-3 text-sm font-semibold hover:text-coral transition">
+                        <Heart size={18} className="mx-auto" />
                       </button>
-                      <button onClick={handleClick} className="flex-1 rounded-full bg-coral py-2 text-xs font-semibold text-white transition hover:bg-opacity-90 flex items-center justify-center gap-1">
+                      </div>
+                      <button onClick={handleClick} className=" rounded-md bg-coral p-2  text-xs font-semibold text-white transition hover:bg-opacity-90 flex items-center justify-center gap-1">
                         <ShoppingCart size={12} />
                         <span>Add to Cart</span>
                       </button>
@@ -206,15 +223,6 @@ export default function MainSection() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className="relative mt-6">
-            <div className="absolute -top-12 -right-20 flex items-center gap-2 rounded-full bg-teal px-8 py-4 text-sm font-semibold text-white shadow-lg">
-              <span>👋</span>
-              <div>
-                <p>Hello! Our doctors are online & ready to help you now!</p>
-              </div>
             </div>
           </div>
         </div>
