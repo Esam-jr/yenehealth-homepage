@@ -5,12 +5,14 @@ import FeaturedLearning from './components/FeaturedLearning'
 import CTA from './components/CTA'
 import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
+import Hero from './components/Hero'
 
 function App() {
   return (
     <div className="bg-white min-h-screen">
       <TopNav />
       <Header />
+      <Hero />
       <MainSection />
       <FeaturedLearning />
       <CTA />

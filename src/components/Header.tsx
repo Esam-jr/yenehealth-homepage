@@ -10,7 +10,7 @@ export default function Header() {
   }
 
   return (
-    <header className="relative bg-defaultBg border-b border-gray-100">
+    <header className="sticky top-0 z-40 bg-defaultBg">
       <div className="max-w-full px-4 py-2.5 flex items-center justify-between gap-2 sm:px-6">
         {/* Left: Logo + hamburger for small screens */}
         <div className="flex items-center gap-2 sm:gap-3">
@@ -43,9 +43,9 @@ export default function Header() {
             className="bg-transparent flex-1 outline-none text-xs placeholder-gray-400"
           />
           <div className="flex items-center gap-3">
-            <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs font-medium">Filter</button>
+            <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs ">Filter</button>
             |
-            <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs font-medium">Sort</button>
+            <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs ">Sort</button>
             <button onClick={handleClick} className="bg-coral text-white rounded-full p-1.5 hover:bg-opacity-90 transition">
               <Search size={14} />
             </button>
@@ -60,7 +60,7 @@ export default function Header() {
 
           
 
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-6 px-2">
             <button onClick={handleClick} className="bg-coral text-white rounded-full px-3 py-1.5 text-xs font-semibold hover:bg-opacity-90 transition whitespace-nowrap">
               For Businesses
             </button>

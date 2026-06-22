@@ -1,101 +1,88 @@
-export default function Hero() {
+import { useEffect, useRef } from 'react';
+import { Sparkles, ArrowRight } from 'lucide-react';
+
+function Hero() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (contentRef.current) observer.observe(contentRef.current);
+    if (cardsRef.current) observer.observe(cardsRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="bg-white px-6 py-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 gap-12 items-center">
-        {/* Left - Hero Text */}
-        <div className="space-y-6">
-          <div>
-            <h1 className="text-6xl font-bold leading-tight mb-4">
-              Dear June, Here's to a{' '}
-              <span className="text-teal">Healthier Us</span>
-            </h1>
-            <p className="text-gray-700 text-lg">
-              Halfway Through the Year, its time for yearly check ups
-            </p>
-          </div>
+    <section className="relative min-h-screen w-full overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1920&dpr=2"
+          alt="A caring female healthcare professional — representing compassionate care for African women"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#67bbaa]/70 via-transparent to-[#E7E7E7]/30" />
+      </div>
 
-          {/* Phone Mockup - Placeholder */}
-          <div className="relative w-56 h-80 bg-black rounded-3xl border-8 border-gray-800 shadow-2xl flex items-center justify-center overflow-hidden">
-            <div className="w-full h-full bg-gradient-to-br from-teal-50 to-blue-50 flex flex-col items-center justify-center p-4 text-center">
-              <div className="text-teal font-bold text-xs mb-2">See a Doctor</div>
-              <div className="w-12 h-12 bg-teal rounded-full mb-3"></div>
-              <div className="text-xs text-gray-600 space-y-1">
-                <div>Connect with our</div>
-                <div>provider in minutes</div>
-              </div>
-              <div className="mt-4 text-xs text-gray-500">
-                <div>Consult a Doctor</div>
-                <div>Consult a Pharmacist</div>
-              </div>
+      {/* Content */}
+      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 pt-12 pb-24 lg:px-8">
+        <div className="grid w-full items-center gap-12 lg:grid-cols-2">
+          {/* Text Content */}
+          <div ref={contentRef} className="fade-in-up z-10">
+            {/* Badge */}
+            <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-sm font-medium text-gray-800 backdrop-blur-md ring-1 ring-teal-200/50">
+              <Sparkles className="h-4 w-4 text-coral-500" />
+              <span>Ethiopia's First Femtech Startup</span>
             </div>
-            {/* Notch */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl"></div>
+
+            {/* Headline */}
+            <h1 className="mb-6 text-4xl font-bold  text-gray-900 md:text-5xl lg:text-6xl">
+              Health Is <span className="text-coral-600">Her Choice</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="mb-8 max-w-xl text-lg leading-relaxed text-gray-700">
+              YeneHealth is the first femtech startup in Ethiopia, unlocking the digital door for sexual and reproductive healthcare services. We empower African women with AI-powered tools, trusted health information, and access to care.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="mb-12 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#get-started"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-coral-500 px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-coral-600 hover:shadow-lg hover:shadow-coral-600/20"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#learn-more"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-gray-300 px-8 py-3.5 text-sm font-semibold text-gray-700 transition-all duration-300 hover:border-teal-400 hover:text-teal-700"
+              >
+                Learn More
+              </a>
+            </div>
+
+          
           </div>
+
+         
         </div>
 
-        {/* Right - Featured Products */}
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Products</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { name: 'Natures Bounty Hair, Skin and Nails Biotin...', price: '3,000', original: '3,500', discount: '14%', cat: 'VITAMINS AND SUPPLEMENTS' },
-              { name: 'Gaullac 1 Infant Formula', price: '1,000', original: '1,200', discount: '', cat: 'MOMMY & BABY' },
-              { name: 'Gaullac 2 Follow-On Formula', price: '1,000', original: '1,200', discount: '', cat: 'MOMMY & BABY' },
-              { name: 'Equate Cold & Flu Nighttime Softgels', price: '2,880', original: '', discount: '', cat: 'OVER THE COUNTER' },
-            ].map((product, idx) => (
-              <div key={idx} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
-                {/* Image Container */}
-                <div className="relative bg-gray-100 h-48 flex items-center justify-center group">
-                  {product.discount && (
-                    <div className="absolute top-3 left-3 bg-coral text-white px-2 py-1 rounded text-xs font-bold z-10">
-                      {product.discount} OFF
-                    </div>
-                  )}
-
-                  {/* Product placeholder */}
-                  <svg className="w-16 h-16 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
-                  </svg>
-
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition flex items-center justify-center">
-                    <button onClick={(e) => e.preventDefault()} className="opacity-0 group-hover:opacity-100 transition bg-white rounded px-2 py-1 text-xs font-semibold">
-                      Quick View
-                    </button>
-                  </div>
-                </div>
-
-                {/* Product Info */}
-                <div className="p-3">
-                  <p className="text-xs text-teal font-bold mb-1">{product.cat.substring(0, 20)}</p>
-                  <h3 className="text-xs font-semibold text-gray-900 mb-2 line-clamp-2 h-8">
-                    {product.name}
-                  </h3>
-
-                  {/* Price */}
-                  <div className="flex items-center gap-1 mb-3">
-                    <span className="font-bold text-gray-900">{product.price}</span>
-                    <span className="text-xs text-gray-500">ETB</span>
-                    {product.original && (
-                      <span className="text-xs text-gray-400 line-through ml-1">{product.original}</span>
-                    )}
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex gap-2">
-                    <button onClick={(e) => e.preventDefault()} className="flex-1 border-2 border-coral text-coral rounded-full py-1.5 hover:bg-coral hover:text-white transition font-semibold text-xs">
-                      ♡
-                    </button>
-                    <button onClick={(e) => e.preventDefault()} className="flex-1 bg-coral text-white rounded-full py-1.5 hover:bg-opacity-90 transition font-semibold text-xs">
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
-  )
+  );
 }
+
+export default Hero;
