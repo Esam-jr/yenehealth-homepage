@@ -101,7 +101,7 @@ export default function MainSection() {
   return (
     <section className=" p-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 gap-4 lg:grid-cols-5">
-        {/* Left - Hero Promo Section */}
+        {/* Left -  Promo Section */}
         <div className="lg:col-span-2">
           <div className="relative h-[420px] overflow-hidden rounded-2xl">
             <div
