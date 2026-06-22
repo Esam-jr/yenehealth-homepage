@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Heart, Eye, ShoppingCart } from 'lucide-react'
 
 interface Product {
@@ -52,83 +53,120 @@ const products: Product[] = [
   },
 ]
 
+const campaigns = [
+  {
+    id: 1,
+    title: 'Dear June',
+    image: '/dear-june.jpeg',
+  },
+  {
+    id: 2,
+    title: 'Discount Alert',
+    image: '/discount.jpeg',
+  },
+  {
+    id: 3,
+    title: 'Baby Formula',
+    image: '/babyformula.jpeg',
+  },
+  {
+    id: 4,
+    title: 'Tilla',
+    image: '/tilla.jpeg',
+  },
+]
+ 
 export default function MainSection() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
   }
 
+
   return (
-    <section className="bg-white px-6 py-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-3 gap-8">
+    <section className=" p-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* Left - Hero Promo Section */}
-        <div className="col-span-1 bg-gradient-to-b from-teal-100 to-teal-50 rounded-3xl p-8 flex flex-col justify-center items-start overflow-hidden relative">
-          <div className="relative z-10">
-            <h1 className="text-4xl font-black text-gray-900 mb-4 leading-tight">
-              Dear <span className="text-teal">June</span>, Here&apos;s to a <span className="text-teal">Healthier Us</span>
-            </h1>
-            <p className="text-gray-700 text-sm font-medium mb-8">
-              Halfway Through the Year, its time for yearly check ups
-            </p>
-            
-            {/* Mock Phone Image */}
-            <div className="bg-black rounded-3xl p-2 w-32 h-64 flex items-center justify-center mx-auto">
-              <div className="bg-gradient-to-br from-blue-200 to-teal-200 w-full h-full rounded-2xl flex items-center justify-center">
-                <span className="text-xs text-gray-600">App Preview</span>
-              </div>
+        <div className="lg:col-span-2">
+          <div className="relative h-[420px] overflow-hidden rounded-2xl ">
+            <img
+              src={campaigns[currentSlide].image}
+              alt={campaigns[currentSlide].title}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+              {campaigns.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`h-4  rounded-2xl transition ${
+                    index === currentSlide ? 'w-14 bg-teal' : 'w-8 bg-black/30'
+                  }`}
+                />
+              ))}
             </div>
           </div>
-
-          {/* Decorative elements */}
-          <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
-            <svg className="w-64 h-64" fill="currentColor" viewBox="0 0 200 200">
-              <circle cx="100" cy="100" r="80" />
-            </svg>
-          </div>
+ 
+         <div className="flex flex-wrap gap-3 mt-4">
+  {campaigns.map((campaign, index) => {
+    const isActive = index === currentSlide;
+    
+    return (
+      <button
+        key={campaign.id}
+        onClick={() => setCurrentSlide(index)}
+        title={campaign.title}
+        className={`w-32 shrink-0 rounded-2xl py-1.5 text-sm font-semibold text-center truncate transition-colors duration-200 border border-solid ${
+          isActive
+            ? 'bg-[#4A8B88] text-white border-[#4A8B88]'
+            : 'bg-white text-[#4A8B88] border-[#4A8B88] hover:bg-coral hover:text-white'
+        }`}
+      >
+        {campaign.title}
+      </button>
+    );
+  })}
+</div>
         </div>
 
         {/* Right - Featured Products */}
-        <div className="col-span-2">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Products</h2>
+        <div className="lg:col-span-3 bg-white rounded-3xl p-6 shadow-sm">
+          <h2 className="mb-6 text-xl font-bold text-gray-900">Featured Products</h2>
 
-          {/* Horizontal scrollable container */}
           <div className="overflow-x-auto pb-4">
             <div className="flex gap-4 min-w-min">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="flex-shrink-0 w-56 bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition-shadow group"
+                  className="w-56 flex-shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-xl group"
                 >
-                  {/* Product Image */}
-                  <div className="relative bg-gray-100 aspect-square flex items-center justify-center overflow-hidden">
+                  <div className="relative aspect-square bg-gray-100 flex items-center justify-center overflow-hidden">
                     {product.discount > 0 && (
-                      <div className="absolute top-3 left-3 bg-coral text-white px-3 py-1 rounded-full text-xs font-bold z-10">
+                      <div className="absolute left-3 top-3 z-10 rounded-full bg-coral px-3 py-1 text-xs font-bold text-white">
                         {product.discount}% OFF
                       </div>
                     )}
 
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all flex items-center justify-center">
-                      <button onClick={handleClick} className="opacity-0 group-hover:opacity-100 transition-opacity bg-white rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-semibold">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-all group-hover:bg-opacity-20">
+                      <button onClick={handleClick} className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs font-semibold opacity-0 transition-opacity group-hover:opacity-100">
                         <Eye size={14} />
                         <span>Quick View</span>
                       </button>
                     </div>
 
-                    {/* Image placeholder */}
-                    <svg className="w-16 h-16 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="h-16 w-16 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
                     </svg>
                   </div>
 
-                  {/* Product Info */}
                   <div className="p-4">
-                    <p className="text-teal text-xs font-bold tracking-wide uppercase mb-2">{product.category.slice(0, 20)}</p>
-                    <h3 className="text-sm font-bold text-gray-900 mb-3 line-clamp-2 h-9">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wide text-teal">{product.category.slice(0, 20)}</p>
+                    <h3 className="mb-3 h-9 text-sm font-bold text-gray-900 line-clamp-2">
                       {product.name}
                     </h3>
 
-                    {/* Price */}
-                    <div className="flex items-baseline gap-1 mb-4">
+                    <div className="mb-4 flex items-baseline gap-1">
                       <span className="text-lg font-bold text-gray-900">{product.price.toLocaleString()}</span>
                       <span className="text-xs text-gray-600">ETB</span>
                       {product.originalPrice > product.price && (
@@ -136,12 +174,11 @@ export default function MainSection() {
                       )}
                     </div>
 
-                    {/* Buttons */}
                     <div className="flex gap-2">
-                      <button onClick={handleClick} className="flex-1 border-2 border-coral text-coral rounded-full py-2 hover:bg-coral hover:text-white transition font-semibold text-sm">
+                      <button onClick={handleClick} className="flex-1 rounded-full border-2 border-coral py-2 text-sm font-semibold text-coral transition hover:bg-coral hover:text-white">
                         <Heart size={14} className="mx-auto" />
                       </button>
-                      <button onClick={handleClick} className="flex-1 bg-coral text-white rounded-full py-2 hover:bg-opacity-90 transition font-semibold text-xs flex items-center justify-center gap-1">
+                      <button onClick={handleClick} className="flex-1 rounded-full bg-coral py-2 text-xs font-semibold text-white transition hover:bg-opacity-90 flex items-center justify-center gap-1">
                         <ShoppingCart size={12} />
                         <span>Add to Cart</span>
                       </button>
@@ -152,9 +189,8 @@ export default function MainSection() {
             </div>
           </div>
 
-          {/* Doctor CTA - Floating */}
-          <div className="mt-6 relative">
-            <div className="absolute -top-12 -right-20 bg-teal text-white rounded-full px-8 py-4 font-semibold text-sm shadow-lg flex items-center gap-2">
+          <div className="relative mt-6">
+            <div className="absolute -top-12 -right-20 flex items-center gap-2 rounded-full bg-teal px-8 py-4 text-sm font-semibold text-white shadow-lg">
               <span>👋</span>
               <div>
                 <p>Hello! Our doctors are online & ready to help you now!</p>

@@ -34,7 +34,6 @@ export default {
           900: '#221d16',
         },
         defaultBg: '#E7E7E7',
-        lightBg: '#F5F5F5',
       },
       fontFamily: {
         sans: ['Poppins', 'system-ui', 'sans-serif'],
