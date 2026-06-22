@@ -7,18 +7,18 @@ export default function Header() {
 
   return (
     <header className="bg-defaultBg border-b border-gray-100">
-      <div className="max-w-full px-6 py-2 flex items-center justify-between ">
+      <div className="max-w-full px-6 py-1.5 flex items-center justify-between ">
         {/* Logo - with icon */}
-        <div className="flex-shrink-0 flex items-center "> 
+        <div className="flex-shrink-0 flex items-center"> 
           <img src="/yhnavbarlogo.svg" alt="Logo" sizes='55px'/>
         </div>
 
         {/* Nav Links */}
-        <nav className="flex items-center gap-6">
-          <a href="#" onClick={handleClick} className="text-coral font-semibold text-xs hover:opacity-80 bg-coral bg-opacity-20 px-3 py-1.5 rounded-full cursor-pointer">Home</a>
-          <a href="#" onClick={handleClick} className="text-gray-600 text-xs hover:text-gray-900 cursor-pointer">Shop</a>
-          <a href="#" onClick={handleClick} className="text-gray-600 text-xs hover:text-gray-900 cursor-pointer">Learn</a>
-          <a href="#" onClick={handleClick} className="text-gray-600 text-xs hover:text-gray-900 cursor-pointer">Doctors</a>
+        <nav className="flex items-center font-medium text-coral text-xs gap-6">
+          <a href="#" onClick={handleClick} className="text-white bg-coral px-3 py-2.5 rounded-full cursor-pointer">Home</a>
+          <a href="#" onClick={handleClick} className="  hover:text-teal cursor-pointer">Shop</a>
+          <a href="#" onClick={handleClick} className="  hover:text-teal cursor-pointer">Learn</a>
+          <a href="#" onClick={handleClick} className="  hover:text-teal cursor-pointer">Doctors</a>
         </nav>
 
         {/* Search Bar */}
@@ -28,19 +28,18 @@ export default function Header() {
             placeholder="Search..."
             className="bg-transparent flex-1 outline-none text-xs placeholder-gray-400"
           />
-        </div>
-
-        {/* Filter & Sort */}
-        <div className="flex items-center gap-3">
-          <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs font-medium">Filter</button>
-          <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs font-medium">Sort</button>
-          <button onClick={handleClick} className="bg-coral text-white rounded-full p-1.5 hover:bg-opacity-90 transition">
-            <Search size={14} />
-          </button>
+          <div className="flex items-center gap-3">
+            <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs font-medium">Filter</button>
+            |
+            <button onClick={handleClick} className="text-gray-600 hover:text-gray-900 text-xs font-medium">Sort</button>
+            <button onClick={handleClick} className="bg-coral text-white rounded-full p-1.5 hover:bg-opacity-90 transition">
+              <Search size={14} />
+            </button>
+          </div>
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-6 flex-shrink-0">
           <button onClick={handleClick} className="bg-coral text-white rounded-full px-3 py-1.5 text-xs font-semibold hover:bg-opacity-90 transition whitespace-nowrap">
             For Businesses
           </button>
@@ -52,14 +51,14 @@ export default function Header() {
           </button>
 
           {/* Sign In */}
-          <button onClick={handleClick} className="text-coral text-xs font-semibold hover:opacity-80">SIGN IN</button>
+          <button onClick={handleClick} className="text-coral text-xs  hover:opacity-80">SIGN IN</button>
 
           {/* Icons */}
           <button onClick={handleClick} className="text-coral hover:opacity-80 transition">
-            <Heart size={16} fill="currentColor" />
+            <Heart size={18}  />
           </button>
           <button onClick={handleClick} className="text-coral hover:opacity-80 transition">
-            <ShoppingCart size={16} />
+            <ShoppingCart size={18} />
           </button>
         </div>
       </div>
