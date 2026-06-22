@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         coral: {
-          DEFAULT: '##E17A6E',
+          DEFAULT: '#E17A6E',
           50: '#fef5f3',
           100: '#fce9e4',
           200: '#f8d4ca',
@@ -33,6 +33,7 @@ export default {
           800: '#2c3834',
           900: '#221d16',
         },
+        defaultBg: '#E7E7E7',
         lightBg: '#F5F5F5',
       },
       fontFamily: {

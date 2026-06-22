@@ -6,12 +6,11 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-white border-b border-gray-100">
-      <div className="max-w-full px-6 py-2.5 flex items-center justify-between gap-4">
+    <header className="bg-defaultBg border-b border-gray-100">
+      <div className="max-w-full px-6 py-2 flex items-center justify-between ">
         {/* Logo - with icon */}
-        <div className="flex-shrink-0 flex items-center gap-2">
-          <div className="w-6 h-6 bg-coral rounded flex items-center justify-center text-white text-xs font-bold">Y</div>
-          <span className="text-xs font-bold text-coral">YeneHealth</span>
+        <div className="flex-shrink-0 flex items-center "> 
+          <img src="/yhnavbarlogo.svg" alt="Logo" sizes='55px'/>
         </div>
 
         {/* Nav Links */}
