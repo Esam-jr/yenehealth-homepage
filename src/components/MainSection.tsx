@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Heart, Eye, ShoppingCart } from 'lucide-react'
 
 interface Product {
@@ -79,6 +79,14 @@ const campaigns = [
 export default function MainSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((current) => (current + 1) % campaigns.length)
+    }, 3500)
+
+    return () => clearInterval(interval)
+  }, [])
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
   }
@@ -89,18 +97,28 @@ export default function MainSection() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* Left - Hero Promo Section */}
         <div className="lg:col-span-2">
-          <div className="relative h-[420px] overflow-hidden rounded-2xl ">
-            <img
-              src={campaigns[currentSlide].image}
-              alt={campaigns[currentSlide].title}
-              className="h-full w-full object-cover"
-            />
+          <div className="relative h-[420px] overflow-hidden rounded-2xl">
+            <div
+              className="flex h-full transition-transform duration-700 ease-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {campaigns.map((campaign) => (
+                <div key={campaign.id} className="min-w-full h-full shrink-0">
+                  <img
+                    src={campaign.image}
+                    alt={campaign.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+
             <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
               {campaigns.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`h-4  rounded-2xl transition ${
+                  className={`h-4 rounded-2xl transition-all duration-300 ${
                     index === currentSlide ? 'w-14 bg-teal' : 'w-8 bg-black/30'
                   }`}
                 />
@@ -108,26 +126,28 @@ export default function MainSection() {
             </div>
           </div>
  
-         <div className="flex flex-wrap gap-3 mt-4">
-  {campaigns.map((campaign, index) => {
-    const isActive = index === currentSlide;
-    
-    return (
-      <button
-        key={campaign.id}
-        onClick={() => setCurrentSlide(index)}
-        title={campaign.title}
-        className={`w-32 shrink-0 rounded-2xl py-1.5 text-sm font-semibold text-center truncate transition-colors duration-200 border border-solid ${
-          isActive
-            ? 'bg-[#4A8B88] text-white border-[#4A8B88]'
-            : 'bg-white text-[#4A8B88] border-[#4A8B88] hover:bg-coral hover:text-white'
-        }`}
-      >
-        {campaign.title}
-      </button>
-    );
-  })}
-</div>
+          <div className="mt-4">
+            <div className="flex flex-wrap gap-3">
+              {campaigns.map((campaign, index) => {
+                const isActive = index === currentSlide;
+
+                return (
+                  <button
+                    key={campaign.id}
+                    onClick={() => setCurrentSlide(index)}
+                    title={campaign.title}
+                    className={`flex-1 min-w-0 rounded-2xl border border-solid  py-1.5 px-3 text-sm font-semibold transition-colors duration-200 ${
+                      isActive
+                        ? 'bg-[#4A8B88] text-white border-[#4A8B88]'
+                        : 'text-[#4A8B88] border-[#4A8B88] hover:bg-coral hover:text-white'
+                    }`}
+                  >
+                    <span className="block truncate">{campaign.title}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Right - Featured Products */}
