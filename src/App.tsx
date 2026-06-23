@@ -6,6 +6,7 @@ import CTA from './components/CTA'
 import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
+import CTASection from './components/CTASection'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Hero />
       <MainSection />
       <FeaturedLearning />
+      <CTASection />
       <CTA />
       <Newsletter />
       <Footer />

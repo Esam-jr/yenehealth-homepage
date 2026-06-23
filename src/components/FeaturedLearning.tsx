@@ -56,7 +56,7 @@ const learningItems: LearningItem[] = [
 
 ]
   return (
-    <section className="bg-white py-12 px-6">
+    <section className=" py-12 px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-base font-bold text-gray-900 mb-8">Featured In Learning</h2>
 
