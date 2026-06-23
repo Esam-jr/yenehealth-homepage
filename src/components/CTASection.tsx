@@ -1,9 +1,9 @@
 
 export default function CTASection() {
   return (
-
-    <section className="mx-4 my-6 rounded-2xl overflow-hidden ">
-      <div className=" bg-coral flex flex-col md:flex-row items-center justify-between relative px-6 md:px-16  md:py-0">
+<>
+    <section className=" my-8 overflow-hidden ">
+      <div className=" bg-coral mx-4 rounded-2xl flex flex-col md:flex-row items-center justify-between relative px-6 md:px-16  md:py-0">
         
         {/* Left Side: Overlapping Phones */}
         <div className="relative w-full md:w-1/2 h-64 md:h-[320px] flex justify-center items-end mt-4 md:mt-0 order-2 md:order-1">
@@ -52,5 +52,17 @@ export default function CTASection() {
 
       </div>
     </section>
+    <div className="bg-[#4A8C8A] text-white py-2 px-6 mt-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
+        <div>
+          <p className="text-xl">Help make our app better</p>
+        </div>
+
+        <button  className="bg-coral text-white rounded-md px-5 py-2 font-semibold hover:bg-opacity-90 transition flex items-center gap-2 whitespace-nowrap ml-8">
+          <p>Learn More</p>
+        </button>
+      </div>
+    </div>
+    </>
   );
 }
