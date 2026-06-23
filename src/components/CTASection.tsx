@@ -52,13 +52,13 @@ export default function CTASection() {
 
       </div>
     </section>
-    <div className="bg-[#4A8C8A] text-white py-2 px-6 mt-6">
-      <div className="max-w-7xl mx-auto flex items-center justify-center gap-3">
+    <div className="bg-[#4A8C8A] text-white py-3 px-6 mt-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-center gap-5">
         <div>
           <p className="text-xl">Help make our app better</p>
         </div>
 
-        <button  className="bg-coral text-white rounded-md px-5 py-2 font-semibold hover:bg-opacity-90 transition flex items-center gap-2 whitespace-nowrap ml-8">
+        <button  className="bg-coral text-white rounded-md px-3 py-1  hover:bg-opacity-90 transition flex items-center gap-2 whitespace-nowrap ml-8">
           <p>Learn More</p>
         </button>
       </div>
