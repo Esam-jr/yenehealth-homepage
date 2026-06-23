@@ -2,7 +2,7 @@
 export default function CTASection() {
   return (
 <>
-    <section className=" my-8 overflow-hidden ">
+    <section className=" mt-6 mb-12 overflow-hidden ">
       <div className=" bg-coral mx-4 rounded-2xl flex flex-col md:flex-row items-center justify-between relative px-6 md:px-16  md:py-0">
         
         {/* Left Side: Overlapping Phones */}
