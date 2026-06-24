@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import LoadingScreen from './components/LoadingScreen'
 import TopNav from './components/TopNav'
 import Header from './components/Header'
 import MainSection from './components/MainSection'
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div className="bg-[#F2F3F5] min-h-screen">
+      <LoadingScreen />
       <TopNav />
       <Header />
       <Hero />

@@ -49,7 +49,7 @@ function Hero() {
 
             {/* Headline */}
             <h1 className="mb-6 text-4xl font-bold  text-gray-900 md:text-5xl lg:text-6xl">
-              Health Is <span className="text-coral-600">Her Choice</span>
+              Empowering Women's <span className="text-coral-600">Health Access</span>
             </h1>
 
             {/* Subheadline */}

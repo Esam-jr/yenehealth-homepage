@@ -103,7 +103,7 @@ export default function MainSection() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* Left -  Promo Section */}
         <div className="lg:col-span-2">
-          <div className="relative h-[420px] overflow-hidden rounded-2xl">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl sm:aspect-[16/10] lg:h-[420px] lg:aspect-auto">
             <div
               className="flex h-full transition-transform duration-700 ease-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -113,7 +113,7 @@ export default function MainSection() {
                   <img
                     src={campaign.image}
                     alt={campaign.title}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain lg:object-cover"
                   />
                 </div>
               ))}
