@@ -64,10 +64,10 @@ export default function CTASection() {
       <div className="bg-gradient-to-b from-coral from-[5%] to-white lg:bg-none lg:bg-[#4A8C8A] text-white py-2 px-6 lg:mt-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-4 text-center">
           <div>
-            <p className="text-lg sm:text-xl ">Help make our app better</p>
+            <p className="text-lg ">Help make our app better</p>
           </div>
 
-          <button className="bg-[#4A8C8A] lg:bg-coral text-white font-medium rounded-md px-6 py-2 hover:bg-opacity-90 transition whitespace-nowrap mt-2 lg:mt-0 lg:ml-8">
+          <button className="bg-[#4A8C8A]  lg:bg-coral text-white font-medium rounded-md px-4 py-1.5 hover:bg-opacity-90 transition whitespace-nowrap mt-2 lg:mt-0 lg:ml-8">
             Learn More
           </button>
         </div>
